@@ -1,0 +1,39 @@
+{
+    "name": "Matheus da Rosa Costa",
+    "photo": "https://avatars.githubusercontent.com/u/161109851?s=400&u=9368babb6294b45d4394744fdad9a72c0f753e26&v=4",
+    "job": "Estudante",
+    "location": "Santa Catarina - BR",
+    "email": "matheusdarosacosta@outlook.com",
+    "skills": {
+        "hardSkills": [
+          {
+            "name": "Nodejs",
+            "logo": "https://raw.githubusercontent.com/Matheus-D-R-Costa/N2-Webpage-Portfolio/main/data/imgs/javascript.svg"
+          },
+          {
+            "name": "HTML 5",
+            "logo": "https://raw.githubusercontent.com/Matheus-D-R-Costa/N2-Webpage-Portfolio/main/data/imgs/html.svg"
+          },
+          {
+            "name": "CSS 3",
+            "logo": "https://raw.githubusercontent.com/Matheus-D-R-Costa/N2-Webpage-Portfolio/main/data/imgs/css.svg"
+          }
+        ],
+        "softSkills": [
+          "Liderança",
+          "Resolução de problemas",
+          "Organização",
+          "Trabalho em equipe"
+        ]
+      },
+    "languages": [
+        "Português (Fluente)",
+        "Inglês (Intermediário)"
+    ],
+    "portfolio": [
+        {
+            "name": "Pokedex",
+            "url": "https://github.com/Matheus-D-R-Costa/Pokedex"
+        }
+    ]
+}

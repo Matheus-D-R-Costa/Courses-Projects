@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+body {
+    background-image: url('/assets/img/toolxox.com-enhanced-1wINlpsQn4AiuxH0FT2L9PSj3eqXB6.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 120vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body:hover {
+    backdrop-filter: blur(4px);
+}
+
+.main {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-image: url('/assets/img/toolxox.com-enhanced-1wINlpsQn4AiuxH0FT2L9PSj3eqXB6.jpg');
+    background-size: cover;
+    transition: background-color 1s ease;
+}
+
+.main:hover {
+    box-shadow: 0 .625rem 1.5625rem rgba(0, 0, 0, .3);
+}
+
+.js-tilt-glare {
+    border-radius: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .main {
+        max-width: 768px;
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+}

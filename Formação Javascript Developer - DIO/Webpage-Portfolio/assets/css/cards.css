@@ -1,0 +1,52 @@
+.card {
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    align-items: flex-start;
+    margin: 1rem;
+    overflow: hidden;
+    border-radius: 2rem;
+    transition: .6s cubic-bezier(.28,-0.03,0,.99);
+    box-shadow: 0 .625rem 1.5625rem rgba(0, 0, 0, .3);
+    backdrop-filter: blur(30px);
+    padding: 1rem;
+}
+
+.card .row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.card .row .icon {
+    margin: 0 auto;
+    padding-top: .5rem;
+}
+
+
+.card .row .description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: .5rem;
+    font-size: 1.05rem;
+    width: auto;
+    transform: translateY(300px);
+    transition-delay: .3s;
+    transition: all .3s ease;
+}
+
+input {
+    display: none;
+}
+
+input:checked + label {
+    height: auto;
+}
+
+input:checked + label .description {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
