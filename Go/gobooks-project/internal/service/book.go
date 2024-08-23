@@ -44,12 +44,13 @@ func (service *BookService) SimulateMultipleReadings(bookIds []int, duration tim
 func (service *BookService) SimulateReading(bookId int, duration time.Duration, results chan<- string) {
 	book, err := service.GetById(bookId)
 	if err != nil || book == nil {
-		results <- fmt.Sprintf("Book %d not found")
+		results <- fmt.Sprintf("Book %d not found", bookId)
+		return
 	}
 
 	time.Sleep(duration)
 
-	results <- fmt.Sprintf("Book %d read", book.Title)
+	results <- fmt.Sprintf("Book %s has been read", book.Title)
 
 }
 
