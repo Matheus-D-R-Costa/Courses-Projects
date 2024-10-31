@@ -91,7 +91,6 @@ func (service *CategoryService) CreateCategoryStreamBidirectional(stream grpc.Bi
 	}
 }
 
-
 func (service *CategoryService) ListCategories(ctx context.Context, in *pb.Blank) (*pb.CategoryList, error) {
 	categories, err := service.CategoryDb.FindAll()
 	if err != nil {
