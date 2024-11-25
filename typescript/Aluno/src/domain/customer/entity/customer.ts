@@ -2,11 +2,11 @@ import Address from "../value-object/address"
 
 export default class Customer {
 
-  _id: string
-  _name: string = ""
-  _address!: Address
-  _active: boolean = false
-  _rewardPoints: number = 0
+  private _id: string
+  private _name: string = ""
+  private _address!: Address
+  private _active: boolean = false
+  private _rewardPoints: number = 0
 
   constructor(id: string, name: string) {
     this._id = id
@@ -27,6 +27,14 @@ export default class Customer {
     return this._rewardPoints;
   }
 
+  get Address(): Address {
+    return this._address;
+  }
+
+  set Address(address: Address) {
+    this._address = address;
+  }
+
   validate() {
     if (this._id.length === 0) {
       throw new Error("Id is required");
@@ -39,10 +47,6 @@ export default class Customer {
   changeName(name: string) {
     this._name = name;
     this.validate();
-  }
-
-  get Address(): Address {
-    return this._address;
   }
 
   changeAddress(address: Address) {
@@ -66,10 +70,6 @@ export default class Customer {
 
   addRewardPoints(points: number) {
     this._rewardPoints += points;
-  }
-
-  set Address(address: Address) {
-    this._address = address;
   }
 
 }
