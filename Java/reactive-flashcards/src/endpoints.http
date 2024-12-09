@@ -1,0 +1,12 @@
+GET http://reactive-flashcards/users
+Accept: application/json
+
+
+###
+POST http://localhost:8080/reactive-flashcards/users
+Content-Type: application/json
+
+{
+  "name": "Jamal",
+  "email": "tedson@gmail.com"
+}
