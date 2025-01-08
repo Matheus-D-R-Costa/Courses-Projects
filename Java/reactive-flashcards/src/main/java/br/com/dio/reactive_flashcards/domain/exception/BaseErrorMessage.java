@@ -13,20 +13,22 @@ public class BaseErrorMessage {
     private final String KEY;
     private String[] params;
 
-    private static final BaseErrorMessage GENERIC_EXCEPTION = new BaseErrorMessage("generic");
-    private static final BaseErrorMessage GENERIC_NOT_FOUND = new BaseErrorMessage("generic.notFound");
-    private static final BaseErrorMessage GENERIC_METHOD_NOT_ALLOW = new BaseErrorMessage("generic.methodNotAllow");
+    public static final BaseErrorMessage GENERIC_EXCEPTION = new BaseErrorMessage("generic");
+    public static final BaseErrorMessage GENERIC_NOT_FOUND = new BaseErrorMessage("generic.notFound");
+    public static final BaseErrorMessage GENERIC_METHOD_NOT_ALLOW = new BaseErrorMessage("generic.methodNotAllow");
+    public static final BaseErrorMessage GENERIC_BAD_REQUEST = new BaseErrorMessage("generic.badRequest");
+    public static final BaseErrorMessage USER_NOT_FOUND = new BaseErrorMessage("user.notFound");
 
-    public BaseErrorMessage params(final String... params) {
-        this.params = ArrayUtils.clone(params);
+    public BaseErrorMessage params(final String... PARAMS) {
+        this.params = ArrayUtils.clone(PARAMS);
         return this;
     }
 
     public String getMessage() {
         String message = tryGetMessageFromBundle();
-        if (ArrayUtils.isNotEmpty(params)) {
+        if (ArrayUtils.isNotEmpty(this.params)) {
             MessageFormat fmt = new MessageFormat(message);
-            message = fmt.format(params);
+            message = fmt.format(this.params);
         }
 
         return message;

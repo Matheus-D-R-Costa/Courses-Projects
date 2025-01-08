@@ -2,8 +2,7 @@ services:
   app:
     build:
       context: .
-    command:
-      - bash start.sh
+    command: bash start.sh
     ports:
       - "8080:8080"
       - "5005:5005"
@@ -14,6 +13,8 @@ services:
       - box:/box
     depends_on:
       - db
+    networks:
+      - reactive-net
 
   db:
     image: mongo:latest
@@ -24,11 +25,15 @@ services:
       MONGO_INITDB_DATABASE: Flashcards
     ports:
       - "27017:27017"
+    networks:
+      - reactive-net
 
   box:
-    image: busybox:latest
+    image: busybox
     volumes:
       - /box
+    networks:
+      - reactive-net
 
   mongo-express:
     image: mongo-express:latest
@@ -42,7 +47,13 @@ services:
       ME_CONFIG_BASICAUTH: false
     depends_on:
       - db
+    networks:
+      - reactive-net
 
 volumes:
   db:
   box:
+
+networks:
+  reactive-net:
+    name: custom-net

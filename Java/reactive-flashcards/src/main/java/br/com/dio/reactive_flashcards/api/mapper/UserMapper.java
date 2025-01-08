@@ -4,12 +4,20 @@ import br.com.dio.reactive_flashcards.api.controller.request.UserRequest;
 import br.com.dio.reactive_flashcards.api.controller.response.UserResponse;
 import br.com.dio.reactive_flashcards.domain.document.UserDocument;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserDocument toDocument(final UserRequest userRequest);
-    UserResponse toResponse(final UserDocument document);
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    UserDocument toDocument(final UserRequest request);
 
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    UserDocument toDocument(final UserRequest request, final String id);
+
+    UserResponse toResponse(final UserDocument document);
 
 }

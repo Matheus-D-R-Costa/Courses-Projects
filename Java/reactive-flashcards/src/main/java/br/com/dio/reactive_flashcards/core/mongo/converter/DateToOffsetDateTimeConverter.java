@@ -8,8 +8,8 @@ import java.util.Date;
 public class DateToOffsetDateTimeConverter implements Converter<OffsetDateTime, Date> {
 
     @Override
-    public Date convert(final OffsetDateTime source) {
-        return Date.from(source.toInstant());
+    public Date convert(final OffsetDateTime SOURCE) {
+        return Date.from(SOURCE.toInstant());
     }
 
 }

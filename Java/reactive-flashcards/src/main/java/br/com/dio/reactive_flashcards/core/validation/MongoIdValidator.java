@@ -15,9 +15,9 @@ public class MongoIdValidator implements ConstraintValidator<MongoId, String> {
     }
 
     @Override
-    public boolean isValid(final String s, ConstraintValidatorContext constraintValidatorContext) {
-        log.info("==== checking if {} is a valid mongoDB id", s);
-        return StringUtils.isNotBlank(s) && ObjectId.isValid(s);
+    public boolean isValid(final String STRING, ConstraintValidatorContext constraintValidatorContext) {
+        log.info("==== checking if {} is a valid mongoDB id", STRING);
+        return StringUtils.isNotBlank(STRING) && ObjectId.isValid(STRING);
     }
 
 }

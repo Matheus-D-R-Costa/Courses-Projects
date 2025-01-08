@@ -1,4 +1,4 @@
-GET http://reactive-flashcards/users
+GET http://localhost:8080/reactive-flashcards/users/677dccbc197c2812f6d3cd8a
 Accept: application/json
 
 
@@ -7,6 +7,28 @@ POST http://localhost:8080/reactive-flashcards/users
 Content-Type: application/json
 
 {
-  "name": "Jamal",
-  "email": "tedson@gmail.com"
+  "name": "macaco",
+  "email": "macaco@gmail.com"
 }
+
+###
+POST http://localhost:8080/reactive-flashcards/users
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": ""
+}
+
+###
+PUT http://localhost:8080/reactive-flashcards/users/677dccbc197c2812f6d3cd8a
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "jamal",
+  "email": "jamal@gmail.com"
+}
+
+###
+DELETE http://localhost:8080/reactive-flashcards/users/677dccbc197c2812f6d3cd8a

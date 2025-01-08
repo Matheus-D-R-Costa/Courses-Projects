@@ -17,10 +17,10 @@ public class MongoConfig {
 
     @Bean
     MongoCustomConversions mongoCustomConversions() {
-        final List<Converter<?, ?>> converters = new ArrayList<>();
-        converters.add(new OffsetDateTImeToDateConverter());
-        converters.add(new DateToOffsetDateTimeConverter());
-        return new MongoCustomConversions(converters);
+        final List<Converter<?, ?>> CONVERTERS = new ArrayList<>();
+        CONVERTERS.add(new OffsetDateTImeToDateConverter());
+        CONVERTERS.add(new DateToOffsetDateTimeConverter());
+        return new MongoCustomConversions(CONVERTERS);
     }
 
 }
