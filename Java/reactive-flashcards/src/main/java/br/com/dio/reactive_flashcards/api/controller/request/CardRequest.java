@@ -1,23 +1,21 @@
 package br.com.dio.reactive_flashcards.api.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 
-public record UserRequest(@NotBlank
+public record CardRequest(@NotBlank
                           @Size(min = 1, max = 255)
-                          @JsonProperty("name")
-                          String name,
+                          @JsonProperty("front")
+                          String front,
 
                           @NotBlank
                           @Size(min = 1, max = 255)
-                          @Email
-                          @JsonProperty("email")
-                          String email) {
+                          @JsonProperty("back")
+                          String back) {
 
     @Builder(toBuilder = true)
-    public UserRequest {}
+    public CardRequest {}
 
 }

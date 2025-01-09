@@ -32,3 +32,30 @@ Accept: application/json
 
 ###
 DELETE http://localhost:8080/reactive-flashcards/users/677dccbc197c2812f6d3cd8a
+
+###
+POST http://localhost:8080/reactive-flashcards/decks
+Content-Type: application/json
+
+{
+  "name": "estudo de inglês",
+  "description": "deck para iniciantes",
+  "cards": [
+    {
+      "back": "I doesn't have a decent meal in days!",
+      "front": "Eu não tenho uma refeição decente em dias"
+    },
+    {
+      "back": "The judge donned their oficial robes",
+      "front": "Os juizes vestiram sua tunica oficial"
+    },
+    {
+      "back": "To the man who can tell a history that has no end!",
+      "front": "Ao homem que conseguir contar uma história que não tem fim!"
+    }
+  ]
+}
+
+###
+GET http://localhost:8080/reactive-flashcards/decks/677f01cf71b48a07a83693fc
+Accept: application/json
