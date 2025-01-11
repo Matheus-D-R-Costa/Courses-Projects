@@ -6,6 +6,7 @@ import br.com.dio.reactive_flashcards.domain.repository.DeckRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
@@ -24,6 +25,12 @@ public class DeckQueryService {
                 .doFirst(() -> log.info("==== try to find a deck with id {}", ID))
                 .filter(Objects::nonNull)
                 .switchIfEmpty(Mono.defer(() -> Mono.error(new NotFoundException(DECK_NOT_FOUND.params(ID).getMessage()))));
+    }
+
+    public Flux<DeckDocument> findAll() {
+        return REPOSITORY.findAll()
+                .doFirst(() -> log.info("==== try to find all decks"));
+
     }
 
 }

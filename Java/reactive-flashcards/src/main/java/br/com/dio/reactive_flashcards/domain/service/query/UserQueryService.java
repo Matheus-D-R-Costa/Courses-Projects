@@ -23,7 +23,14 @@ public class UserQueryService {
         return REPOSITORY.findById(ID)
                 .doFirst(() -> log.info("==== try to find user with id {}", ID))
                 .filter(Objects::nonNull)
-                .switchIfEmpty(Mono.defer(() -> Mono.error(new NotFoundException(USER_NOT_FOUND.params(ID).getMessage()))));
+                .switchIfEmpty(Mono.defer(() -> Mono.error(new NotFoundException(USER_NOT_FOUND.params("id", ID).getMessage()))));
+    }
+
+    public Mono<UserDocument> findByEmail(final String EMAIL) {
+        return REPOSITORY.findByEmail(EMAIL)
+                .doFirst(() -> log.info("==== try to find user with email {}", EMAIL))
+                .filter(Objects::nonNull)
+                .switchIfEmpty(Mono.defer(() -> Mono.error(new NotFoundException(USER_NOT_FOUND.params("email", EMAIL).getMessage()))));
     }
 
 }

@@ -7,8 +7,8 @@ POST http://localhost:8080/reactive-flashcards/users
 Content-Type: application/json
 
 {
-  "name": "macaco",
-  "email": "macaco@gmail.com"
+  "name": "maria",
+  "email": "maria@gmail.com"
 }
 
 ###
@@ -21,13 +21,13 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/reactive-flashcards/users/677dccbc197c2812f6d3cd8a
+PUT http://localhost:8080/reactive-flashcards/users/6781cc244553ae7199ac8bf4
 Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "jamal",
-  "email": "jamal@gmail.com"
+  "name": "macaco",
+  "email": "macaco@gmail.com"
 }
 
 ###
@@ -57,5 +57,5 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/reactive-flashcards/decks/677f01cf71b48a07a83693fc
+GET http://localhost:8080/reactive-flashcards/decks
 Accept: application/json
