@@ -1,5 +1,6 @@
 package br.com.dio.reactive_flashcards.api.controller.exceptionhandler;
 
+import br.com.dio.reactive_flashcards.domain.exception.DeckPendingException;
 import br.com.dio.reactive_flashcards.domain.exception.EmailAlreadyUsedException;
 import br.com.dio.reactive_flashcards.domain.exception.NotFoundException;
 import br.com.dio.reactive_flashcards.domain.exception.ReactiveFlashcardsException;
@@ -32,6 +33,7 @@ public class ApiExceptionHandler implements WebExceptionHandler {
     public Mono<Void> handle(final ServerWebExchange EXCHANGE, Throwable EX) {
         return Mono.error(EX)
                 .onErrorResume(MethodNotAllowedException.class, e -> new MethodNotAllowHandler(OBJECT_MAPPER).handle(EXCHANGE, e))
+                .onErrorResume(DeckPendingException.class, e -> new DeckPendingHandler(OBJECT_MAPPER).handle(EXCHANGE, e))
                 .onErrorResume(EmailAlreadyUsedException.class, e -> new EmailAlreadyUsedHandler(OBJECT_MAPPER).handle(EXCHANGE, e))
                 .onErrorResume(NotFoundException.class, e -> new NotFoundHandler(OBJECT_MAPPER).handle(EXCHANGE, e))
                 .onErrorResume(ConstraintViolationException.class, e -> new ConstraintViolationHandler(OBJECT_MAPPER).handle(EXCHANGE, e))

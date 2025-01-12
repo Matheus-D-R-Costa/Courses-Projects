@@ -19,7 +19,11 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage GENERIC_BAD_REQUEST = new BaseErrorMessage("generic.badRequest");
     public static final BaseErrorMessage USER_NOT_FOUND = new BaseErrorMessage("user.notFound");
     public static final BaseErrorMessage DECK_NOT_FOUND = new BaseErrorMessage("deck.notFound");
+    public static final BaseErrorMessage STUDY_DECK_NOT_FOUND = new BaseErrorMessage("studyDeck.notFound");
+    public static final BaseErrorMessage STUDY_NOT_FOUND = new BaseErrorMessage("study.notFound");
+    public static final BaseErrorMessage STUDY_QUESTION_NOT_FOUND = new BaseErrorMessage("studyQuestion.notFound");
     public static final BaseErrorMessage EMAIL_ALREADY_USED = new BaseErrorMessage("user.emailAlreadyUsed");
+    public static final BaseErrorMessage DECK_PENDING = new BaseErrorMessage("study.deckPending");
 
     public BaseErrorMessage params(final String... PARAMS) {
         this.params = ArrayUtils.clone(PARAMS);

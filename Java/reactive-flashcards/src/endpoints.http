@@ -7,8 +7,8 @@ POST http://localhost:8080/reactive-flashcards/users
 Content-Type: application/json
 
 {
-  "name": "maria",
-  "email": "maria@gmail.com"
+  "name": "macaco",
+  "email": "macaco@gmail.com"
 }
 
 ###
@@ -42,20 +42,33 @@ Content-Type: application/json
   "description": "deck para iniciantes",
   "cards": [
     {
-      "back": "I doesn't have a decent meal in days!",
-      "front": "Eu não tenho uma refeição decente em dias"
+      "front": "I doesn't have a decent meal in days!",
+      "back": "Eu não tenho uma refeição decente em dias"
     },
     {
-      "back": "The judge donned their oficial robes",
-      "front": "Os juizes vestiram sua tunica oficial"
+      "front": "The judge donned their oficial robes",
+      "back": "Os juizes vestiram sua tunica oficial"
     },
     {
-      "back": "To the man who can tell a history that has no end!",
-      "front": "Ao homem que conseguir contar uma história que não tem fim!"
+      "front": "To the man who can tell a history that has no end!",
+      "back": "Ao homem que conseguir contar uma história que não tem fim!"
     }
   ]
 }
 
 ###
 GET http://localhost:8080/reactive-flashcards/decks
+Accept: application/json
+
+###
+POST http://localhost:8080/reactive-flashcards/studies
+Content-Type: application/json
+
+{
+  "deckId": "6783013b91203111857df024",
+  "userId": "678300cc91203111857df022"
+}
+
+###
+GET http://localhost:8080/reactive-flashcards/studies/6783140552e43668a630f334
 Accept: application/json
