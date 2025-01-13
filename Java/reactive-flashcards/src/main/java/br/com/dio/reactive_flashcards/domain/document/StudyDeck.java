@@ -1,7 +1,5 @@
 package br.com.dio.reactive_flashcards.domain.document;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.HashSet;
@@ -20,12 +18,17 @@ public record StudyDeck(@Field("deck_id")
         return new StudyDeckBuilder(deckId, cards);
     }
 
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class StudyDeckBuilder {
 
         private String deckId;
         private Set<StudyCard> cards = new HashSet<>();
+
+        public StudyDeckBuilder() { }
+
+        public StudyDeckBuilder(String deckId, Set<StudyCard> cards) {
+            this.deckId = deckId;
+            this.cards = cards;
+        }
 
         public StudyDeckBuilder deckId(final String DECK_ID) {
             this.deckId = DECK_ID;

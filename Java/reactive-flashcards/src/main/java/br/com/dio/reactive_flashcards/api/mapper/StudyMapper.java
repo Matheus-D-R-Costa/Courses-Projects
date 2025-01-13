@@ -1,6 +1,7 @@
 package br.com.dio.reactive_flashcards.api.mapper;
 
 import br.com.dio.reactive_flashcards.api.controller.request.StudyRequest;
+import br.com.dio.reactive_flashcards.api.controller.response.AnswerQuestionResponse;
 import br.com.dio.reactive_flashcards.api.controller.response.QuestionResponse;
 import br.com.dio.reactive_flashcards.domain.document.Question;
 import br.com.dio.reactive_flashcards.domain.document.StudyDocument;
@@ -20,5 +21,7 @@ public interface StudyMapper {
     StudyDocument toDocument(final StudyRequest request);
 
     QuestionResponse toResponse(final Question question, final String id);
+
+    AnswerQuestionResponse toResponse(final Question question);
 
 }

@@ -1,7 +1,5 @@
 package br.com.dio.reactive_flashcards.domain.document;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,13 +19,11 @@ public record StudyDocument(@Id
                             @Field("user_id")
                             String userId,
 
-                            @Field("is_complete")
-                            Boolean isComplete,
-
                             @Field("study_deck")
                             StudyDeck studyDeck,
 
                             List<Question> questions,
+                            Boolean completed,
 
                             @CreatedDate
                             @Field("created_at")
@@ -41,7 +38,7 @@ public record StudyDocument(@Id
     }
 
     public StudyDocumentBuilder toBuilder() {
-        return new StudyDocumentBuilder(id, userId, isComplete, studyDeck, questions, createdAt, updatedAt);
+        return new StudyDocumentBuilder(id, userId, studyDeck, questions, createdAt, updatedAt);
     }
 
     public Question getLastPendingQuestion() {
@@ -49,17 +46,41 @@ public record StudyDocument(@Id
                 .filter(q -> Objects.isNull(q.answeredIn())).findFirst().orElseThrow();
     }
 
-    @NoArgsConstructor
-    @AllArgsConstructor
+    public Question getLastAnsweredQuestion() {
+        return questions.stream()
+                .filter(q -> Objects.nonNull(q.answeredIn()))
+                .max(Comparator.comparing(Question::answeredIn))
+                .orElseThrow();
+    }
+
     public static class StudyDocumentBuilder {
 
         private String id;
         private String userId;
-        private Boolean isComplete = false;
         private StudyDeck studyDeck;
         private List<Question> questions  = new ArrayList<>();
         private OffsetDateTime createdAt;
         private OffsetDateTime updatedAt;
+
+        public StudyDocumentBuilder() { }
+
+        public StudyDocumentBuilder(
+                String id,
+                String userId,
+                StudyDeck studyDeck,
+                List<Question> questions,
+                OffsetDateTime createdAt,
+                OffsetDateTime updatedAt) {
+
+            this.id = id;
+            this.userId = userId;
+            this.studyDeck = studyDeck;
+            this.questions = questions;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
+
+        }
+
 
         public StudyDocumentBuilder id(final String ID) {
             this.id = ID;
@@ -68,11 +89,6 @@ public record StudyDocument(@Id
 
         public StudyDocumentBuilder userId(final String USER_ID) {
             this.userId = USER_ID;
-            return this;
-        }
-
-        public StudyDocumentBuilder isComplete(final Boolean IS_COMPLETE) {
-            this.isComplete = IS_COMPLETE;
             return this;
         }
 
@@ -102,7 +118,12 @@ public record StudyDocument(@Id
         }
 
         public StudyDocument build() {
-            return new StudyDocument(id, userId, isComplete, studyDeck,questions,createdAt,updatedAt);
+            var rightQuestions = questions.stream()
+                    .filter(Question::isCorrect)
+                    .toList();
+            var completed = rightQuestions.size() == studyDeck.cards().size();
+
+            return new StudyDocument(id, userId, studyDeck, questions, completed, createdAt, updatedAt);
         }
 
     }

@@ -1,6 +1,8 @@
 package br.com.dio.reactive_flashcards.api.controller;
 
+import br.com.dio.reactive_flashcards.api.controller.request.AnswerQuestionRequest;
 import br.com.dio.reactive_flashcards.api.controller.request.StudyRequest;
+import br.com.dio.reactive_flashcards.api.controller.response.AnswerQuestionResponse;
 import br.com.dio.reactive_flashcards.api.controller.response.QuestionResponse;
 import br.com.dio.reactive_flashcards.api.mapper.StudyMapper;
 import br.com.dio.reactive_flashcards.core.validation.MongoId;
@@ -36,11 +38,20 @@ public class StudyController {
                 .map(document -> MAPPER.toResponse(document.getLastPendingQuestion(), document.id()));
     }
 
-    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "{ID}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, value = "{ID}/current-question")
     public Mono<QuestionResponse> getCurrentQuestion(@Valid @PathVariable @MongoId(message = "{study.neededId}") final String ID) {
         return QUERY_SERVICE.getLastPendingQuestion(ID)
                 .doFirst(() -> log.info("==== try to get the next question available in study {}", ID))
                 .map(question -> MAPPER.toResponse(question, ID));
+    }
+
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, value = "{ID}/answer")
+    public Mono<AnswerQuestionResponse> answer(@Valid @PathVariable @MongoId(message = "{study.neededId}") final String ID,
+                                               @Valid @RequestBody final AnswerQuestionRequest REQUEST) {
+
+        return SERVICE.answer(ID, REQUEST.answer())
+                .doFirst(() -> log.info("==== try to answer pending question in study {} with {}", ID, REQUEST.answer()))
+                .map(document -> MAPPER.toResponse(document.getLastAnsweredQuestion()));
     }
 
 }
