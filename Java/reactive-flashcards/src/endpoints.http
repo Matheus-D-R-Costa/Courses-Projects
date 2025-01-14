@@ -65,8 +65,8 @@ POST http://localhost:8080/reactive-flashcards/studies
 Content-Type: application/json
 
 {
-  "deckId": "6784691449f7bc4f2d47d2b5",
-  "userId": "6784690949f7bc4f2d47d2b4"
+  "deckId": "6786d5263e440b3723e52fe6",
+  "userId": "6786d5153e440b3723e52fe5"
 }
 
 ###
@@ -74,11 +74,11 @@ GET http://localhost:8080/reactive-flashcards/studies/6783140552e43668a630f334
 Accept: application/json
 
 ###
-GET http://localhost:8080/reactive-flashcards/studies/67846a567d2bc10fc5a62dbd/current-question
+GET http://localhost:8080/reactive-flashcards/studies/6786e11c82fa651a9ec0625a/current-question
 Accept: application/json
 
 ###
-POST http://localhost:8080/reactive-flashcards/studies/67846a567d2bc10fc5a62dbd/answer
+POST http://localhost:8080/reactive-flashcards/studies/6786e11c82fa651a9ec0625a/answer
 Content-Type: application/json
 
 {

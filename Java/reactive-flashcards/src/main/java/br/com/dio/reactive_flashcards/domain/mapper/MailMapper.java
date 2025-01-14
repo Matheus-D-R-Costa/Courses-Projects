@@ -1,9 +1,9 @@
 package br.com.dio.reactive_flashcards.domain.mapper;
 
 import br.com.dio.reactive_flashcards.domain.document.DeckDocument;
-import br.com.dio.reactive_flashcards.domain.document.StudyDocument;
 import br.com.dio.reactive_flashcards.domain.document.UserDocument;
 import br.com.dio.reactive_flashcards.domain.dto.MailMessageDto;
+import br.com.dio.reactive_flashcards.domain.dto.StudyDto;
 import jakarta.mail.MessagingException;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
@@ -21,7 +21,7 @@ public interface MailMapper {
     @Mapping(target = "destination", source = "user.email")
     @Mapping(target = "subject", constant = "Relatório de estudos")
     @Mapping(target = "questions", source = "study.questions")
-    MailMessageDto toDto(final StudyDocument study, final DeckDocument deck, final UserDocument user);
+    MailMessageDto toDto(final StudyDto study, final DeckDocument deck, final UserDocument user);
 
     @Mapping(target = "to", expression = "java(new String [] {dto.destination()})")
     @Mapping(target = "from", source = "sender")

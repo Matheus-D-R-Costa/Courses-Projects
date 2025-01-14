@@ -36,10 +36,10 @@ services:
       - reactive-net
 
   mailcatcher:
-    image: tophfr/mailcatcher
+    image: dockage/mailcatcher:0.9
     ports:
-      - "1025:25"
-      - "1080:80"
+      - "1025:1025"
+      - "1080:1080"
     networks:
       - reactive-net
 
