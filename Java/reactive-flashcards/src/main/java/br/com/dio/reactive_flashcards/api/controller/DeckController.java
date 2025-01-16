@@ -15,6 +15,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -35,6 +36,12 @@ public class DeckController {
         return SERVICE.create(MAPPER.toDocument(REQUEST))
                 .doFirst(() -> log.info("==== Creating a deck with the follow info {}", REQUEST))
                 .map(MAPPER::toResponse);
+    }
+
+    @PostMapping(value = "sync")
+    @ResponseStatus(NO_CONTENT)
+    public Mono<Void> sync() {
+        return SERVICE.sync();
     }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
