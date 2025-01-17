@@ -1,9 +1,8 @@
 package br.com.dio.reactive_flashcards.domain.dto;
 
-import org.apache.commons.collections4.CollectionUtils;
-
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public record StudyDto(String id,
@@ -24,7 +23,11 @@ public record StudyDto(String id,
     }
 
     public Boolean hasAnyAnswer() {
-        return CollectionUtils.isNotEmpty(remainAsks);
+        return isNotEmpty(remainAsks);
+    }
+
+    private boolean isNotEmpty(Collection<?> collection) {
+        return collection != null || !collection.isEmpty();
     }
 
     public static class StudyDtoBuilder {

@@ -1,6 +1,9 @@
 GET http://localhost:8080/reactive-flashcards/users/677dccbc197c2812f6d3cd8a
 Accept: application/json
 
+###
+GET http://localhost:8080/reactive-flashcards/users?sortBy=EMAIL&limit=3&page=1&sortDirection=ASC&sentence=tigre
+Content-Type: application/json
 
 ###
 POST http://localhost:8080/reactive-flashcards/users

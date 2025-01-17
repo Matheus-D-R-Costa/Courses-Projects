@@ -1,7 +1,6 @@
 package br.com.dio.reactive_flashcards.domain.exception;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
@@ -27,19 +26,23 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage DECK_PENDING = new BaseErrorMessage("study.deckPending");
 
     public BaseErrorMessage params(final String... PARAMS) {
-        this.params = ArrayUtils.clone(PARAMS);
+        this.params = (PARAMS != null) ? PARAMS.clone() : null;
         return this;
     }
 
     public String getMessage() {
         String message = tryGetMessageFromBundle();
-        if (ArrayUtils.isNotEmpty(this.params)) {
+        if (hasParams()) {
             MessageFormat fmt = new MessageFormat(message);
             message = fmt.format(this.params);
         }
 
         return message;
 
+    }
+
+    private boolean hasParams() {
+        return this.params != null && this.params.length > 0;
     }
 
     private String tryGetMessageFromBundle() {

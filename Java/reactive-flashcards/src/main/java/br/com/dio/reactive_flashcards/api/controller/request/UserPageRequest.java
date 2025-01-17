@@ -1,23 +1,40 @@
 package br.com.dio.reactive_flashcards.api.controller.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Builder;
 import org.springframework.data.domain.Sort;
-
-import java.util.Objects;
 
 import static br.com.dio.reactive_flashcards.api.controller.request.UserSortBy.NAME;
 import static br.com.dio.reactive_flashcards.api.controller.request.UserSortDirection.ASC;
 
-public record UserPageRequest(String sentence,
+public record UserPageRequest(@JsonProperty("sentence")
+                              String sentence,
+
+                              @JsonProperty("page")
+                              @PositiveOrZero
                               Long page,
+
+                              @JsonProperty("limit")
+                              @Min(1)
+                              @Max(50)
                               Integer limit,
+
+                              @JsonProperty("sortBy")
                               UserSortBy sortBy,
+
+                              @JsonProperty("sortDirection")
                               UserSortDirection sortDirection) {
 
-    @Builder
+    @Builder(toBuilder = true)
     public UserPageRequest {
-        if (Objects.isNull(sortBy)) sortBy = NAME;
-        if (Objects.isNull(sortDirection)) sortDirection = ASC;
+        sentence = (sentence != null ? sentence : "");
+        page = (page != null ? page : 0L);
+        limit = (limit != null ? limit : 10);
+        sortBy = (sortBy != null ? sortBy : NAME);
+        sortDirection = (sortDirection != null ? sortDirection : ASC);
     }
 
     public Long getSkip() {

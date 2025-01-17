@@ -16,7 +16,6 @@ import br.com.dio.reactive_flashcards.domain.service.query.StudyQueryService;
 import br.com.dio.reactive_flashcards.domain.service.query.UserQueryService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -116,7 +115,7 @@ public class StudyService {
 
     private Mono<StudyDto> setNewQuestion(final StudyDto DTO) {
         return Mono.just(DTO.hasAnyAnswer())
-                .filter(BooleanUtils::isTrue)
+                .filter(Boolean::booleanValue)
                 .switchIfEmpty(Mono.defer(() -> Mono.error(new NotFoundException(STUDY_QUESTION_NOT_FOUND
                         .params(DTO.id())
                         .getMessage()))))

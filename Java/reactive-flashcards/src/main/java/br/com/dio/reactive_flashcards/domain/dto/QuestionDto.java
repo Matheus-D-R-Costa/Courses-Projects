@@ -2,10 +2,8 @@ package br.com.dio.reactive_flashcards.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 public record QuestionDto(String asked,
                           OffsetDateTime askedIn,
@@ -18,7 +16,7 @@ public record QuestionDto(String asked,
     }
 
     public Boolean isAnswered() {
-        return Objects.nonNull(answeredIn);
+        return answeredIn != null;
     }
 
     public static QuestionBuilder builder() {
@@ -40,7 +38,7 @@ public record QuestionDto(String asked,
         private String expected;
 
         public QuestionBuilder asked(final String ASKED) {
-            if (StringUtils.isNotBlank(ASKED)) {
+            if (isNotBlank(ASKED)) {
                 this.asked = ASKED;
                 this.askedIn = OffsetDateTime.now();
             }
@@ -49,13 +47,26 @@ public record QuestionDto(String asked,
         }
 
         public QuestionBuilder answered(final String ANSWERED) {
-            if (StringUtils.isNotBlank(ANSWERED)) {
+            if (isNotBlank(ANSWERED)) {
                 this.answered = ANSWERED;
                 this.answeredIn = OffsetDateTime.now();
             }
 
             return this;
         }
+
+        private boolean isNotBlank(CharSequence cs) {
+            int strLen = cs.length();
+            if (strLen == 0) return false;
+
+            for (int i = 0; i < strLen; i++) {
+                if (!Character.isWhitespace(cs.charAt(i))) return true;
+            }
+
+            return false;
+
+        }
+
 
         public QuestionBuilder expected(final String EXPECTED) {
             this.expected = EXPECTED;
