@@ -30,6 +30,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE")
+	implementation("org.springdoc:springdoc-openapi-webflux-ui:1.8.0")
 	implementation("org.mapstruct:mapstruct:1.6.3")
 	implementation("org.apache.commons:commons-lang3:3.17.0")
 	implementation("org.apache.commons:commons-collections4:4.5.0-M2")
